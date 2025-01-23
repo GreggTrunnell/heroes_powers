@@ -42,8 +42,11 @@ function HeroesList() {
         ) : (
          heroesList.map(( hero, index) => (
             <div key={index} className="search-result">
-              Super Power: {hero['super power']} Hero: {hero.hero}
+              <p><strong>Hero: {hero.hero}</strong></p>
               <p><strong>Alias:</strong> {hero.alias}</p>
+              <p><strong>Super Power:</strong> {hero['super power']}</p>
+              <p><strong>Descripton:</strong> {hero.description}</p>
+              <p><strong>Power Level:</strong> {hero.power_level}</p>
               <hr />
             </div>
           ))
