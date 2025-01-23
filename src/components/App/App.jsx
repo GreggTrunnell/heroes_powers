@@ -7,7 +7,7 @@ function App() {
   return (
     <div>
       <header>
-        <h1>Tennis Stat Tracker</h1>
+        <h1>Super Heroes</h1>
       </header>
     <Navigation />
     </div>

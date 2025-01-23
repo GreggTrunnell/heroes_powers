@@ -11,6 +11,7 @@ function StatsList() {
       .then((response) => {
         console.log("Response from GET", response.data);
         setStatsList(response.data); 
+        console.log('updated response', response.data )
       })
       .catch((error) => {
         console.log("Error on GET", error);
@@ -36,9 +37,10 @@ function StatsList() {
       /> 
       <button onClick={ Search }>Search</button>
             { statsList.map(( stat, index )=>
-        <div key={ index }><span className='search_results'>
-         { stat.first_name } { stat.last_name } </span>
-          Playing Hand: { stat.playing_hand } Raquet: { stat.raquet_brand } 
+        <div key={ index } className='search_results'>HEROPWRID: { stat.heroes_powers.hero_id } HPsuperpwrid: { stat.heroes_powers.super_power_id }
+         Super Hero:{ stat.heroes.name } Super Hero's Alias{ stat.heroes.alias } 
+         Power Level: { stat.heroes_powers.power_level } Super Power: { stat.super_powers.name } 
+         Power's Description: { stat.super_powers.description }
         </div>)}
               
     </div>
