@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-function StatsList() {
-  const [statsList, setStatsList] = useState([]);
+function HeroesList() {
+  const [heroesList, setHeroesList] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
 
   const Search = () => {
@@ -10,7 +10,7 @@ function StatsList() {
     axios.get(`/api/search?q=${ searchQuery }`)
       .then((response) => {
         console.log("Response from GET", response.data);
-        setStatsList(response.data); 
+        setHeroesList(response.data); 
         console.log('updated response', response.data )
       })
       .catch((error) => {
@@ -36,15 +36,22 @@ function StatsList() {
         onKeyDown={ handleKeyDown }
       /> 
       <button onClick={ Search }>Search</button>
-            { statsList.map(( stat, index )=>
-        <div key={ index } className='search_results'>HEROPWRID: { stat.heroes_powers.hero_id } HPsuperpwrid: { stat.heroes_powers.super_power_id }
-         Super Hero:{ stat.heroes.name } Super Hero's Alias{ stat.heroes.alias } 
-         Power Level: { stat.heroes_powers.power_level } Super Power: { stat.super_powers.name } 
-         Power's Description: { stat.super_powers.description }
-        </div>)}
+      <div>
+        {heroesList.length === 0 ? (
+          <p>No results found.</p>
+        ) : (
+         heroesList.map(( hero, index) => (
+            <div key={index} className="search-result">
+              Super Power: {hero['super power']} Hero: {hero.hero}
+              <p><strong>Alias:</strong> {hero.alias}</p>
+              <hr />
+            </div>
+          ))
+        )}
+      </div>
               
     </div>
   );
   }
 
-export default StatsList;
+export default HeroesList;

@@ -5,17 +5,20 @@ const pool = require('../modules/pool');
 router.get('/', (req, res) => {
   const searchQuery = req.query.q || '';
   const queryText = `
-SELECT * 
-FROM heroes
-JOIN heroes_powers ON heroes.id = heroes_powers.hero_id
-JOIN super_powers ON super_powers.id = heroes_powers.super_power_id
-WHERE (CAST(heroes_powers.hero_id AS TEXT) ILIKE $1)
-OR (CAST(heroes_powers.super_power_id AS TEXT) ILIKE $1)
-OR(heroes.name ILIKE $1)
-OR (heroes.alias ILIKE $1)
-OR (CAST(heroes_powers.power_level AS TEXT) ILIKE $1)
-OR (super_powers.name ILIKE $1)
-OR (super_powers.description ILIKE $1);`;
+SELECT super_powers.name AS "super power", heroes.name AS "hero"
+FROM super_powers
+JOIN heroes_powers ON super_powers.id = heroes_powers.super_power_id
+JOIN heroes ON heroes.id = heroes_powers.hero_id
+WHERE heroes.name ILIKE $1
+OR heroes.alias ILIKE $1
+OR super_powers.name ILIKE $1;
+
+`;
+
+
+
+
+
   
 const values = [`%${searchQuery}%`];
 
