@@ -37,6 +37,7 @@ function HeroesList() {
       /> 
       <button onClick={ Search }>Search</button>
       <div>
+        {/* I learned how to setup this no results found */}
         {heroesList.length === 0 ? (
           <p>No results found.</p>
         ) : (
@@ -44,15 +45,14 @@ function HeroesList() {
             <div key={index} className="search-result">
               <p><strong>Hero: {hero.hero}</strong></p>
               <p><strong>Alias:</strong> {hero.alias}</p>
-              <p><strong>Super Power:</strong> {hero['super power']}</p>
+              <p><strong>Super Power:</strong> {hero.superpower}</p>
               <p><strong>Descripton:</strong> {hero.description}</p>
               <p><strong>Power Level:</strong> {hero.power_level}</p>
               <hr />
             </div>
           ))
         )}
-      </div>
-              
+      </div>        
     </div>
   );
   }

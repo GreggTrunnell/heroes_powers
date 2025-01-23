@@ -5,7 +5,7 @@ const pool = require('../modules/pool');
 router.get('/', (req, res) => {
   const searchQuery = req.query.q || '';
   const queryText = `
-SELECT heroes.name AS "hero", heroes.alias AS "alias", super_powers.name AS "super power",
+SELECT heroes.name AS "hero", heroes.alias AS "alias", super_powers.name AS "superpower",
 super_powers.description AS "description", heroes_powers.power_level AS "power_level"
 FROM super_powers
 JOIN heroes_powers ON super_powers.id = heroes_powers.super_power_id
